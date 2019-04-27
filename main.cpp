@@ -4,6 +4,7 @@
 
 #include "Item.h"
 #include "Almacen.h"
+#include "Client.h"
 
 using namespace std;
 
@@ -65,7 +66,32 @@ int main() {
             break;
 
             case 2: {
-                cargarInfoCliente();
+                string nombre, apellido, direccion, nombreItem;
+                int opC;
+                
+                cout << "Ingrese sus datos de cliente\n";
+                cout << "Nombre: ";
+                cin >> nombre;
+                cout << "\nApellido: ";
+                cin >> apellido;
+                cout << "\nDireccion: ";
+                cin >> direccion;
+                
+                Client cliente(nombre, apellido, direccion);
+                
+                cout << "1. Ver la lista de productos \n";
+                cout << "2. Ver su carrito \n";
+                cin >> opC;
+                
+                if (opC == 1) {
+                    almacen.mostrarStock();
+                    cout << "\n Ingrese el nombre exacto del producto para agregar al carrito \n";
+                    cin >> nombreItem;
+                    //buscar en stock el producto que tenga el nombre y crear el carrito en client pa meterlo xd
+                } else if (opC == 2) {
+                    //mostrar el carrito del cliente
+                }
+                system("clear");
             }
             break;
 

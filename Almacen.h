@@ -19,6 +19,7 @@ public:
     void almacenarItem(Item item);
     void retirarItem(Item item);
     void mostrarStock();
+    void cargarStock();
 };
 
 #endif /* ALMACEN_H */

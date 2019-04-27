@@ -5,36 +5,6 @@ Peso: 1
 Tamano: 27
 Proveedor: tu mama
 -------------------------------------------------
-Nombre: vibrador
-Descripcion: vibra xd
-Peso: 14
-Tamano: 27
-Proveedor: tu mama
--------------------------------------------------
-Nombre: anal beads
-Descripcion: te las metes por el ano
-Peso: 54
-Tamano: 78
-Proveedor: tu tia
--------------------------------------------------
-Nombre: vibrador
-Descripcion: vibra xd
-Peso: 14
-Tamano: 27
-Proveedor: tu mama
--------------------------------------------------
-Nombre: anal beads
-Descripcion: te las metes por el ano
-Peso: 54
-Tamano: 78
-Proveedor: tu tia
--------------------------------------------------
-Nombre: vibrador
-Descripcion: vibra xd
-Peso: 14
-Tamano: 27
-Proveedor: tu mama
--------------------------------------------------
 Nombre: anal beads
 Descripcion: te las metes por el ano
 Peso: 54

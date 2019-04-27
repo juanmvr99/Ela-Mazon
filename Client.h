@@ -2,6 +2,8 @@
 #define CLIENT_H
 
 #include <iostream>
+#include <vector>
+#include "Item.h"
 using namespace std;
 
 class Client {
@@ -9,6 +11,7 @@ private:
     string nombre;
     string apellido;
     string direccion;
+    vector<Item> carrito;
     
 public:
     Client(string nombre, string apellido, string direccion) {
@@ -25,6 +28,8 @@ public:
     string getDireccion() {
         return direccion;
     }
+    void addToCarrito(string nombreItem);
+    void mostrarCarrito();
 };
 
 #endif /* CLIENT_H */
