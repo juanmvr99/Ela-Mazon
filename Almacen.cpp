@@ -4,7 +4,7 @@
 
 void Almacen::almacenarItem(Item item) {
     //aqui el item se va a guardar en el archivo del almacen
-    ofstream archivo("almacen.txt", ios::app); //archivo para escribir en append (se crea o se abre de la carpeta del proyecto)
+    ofstream archivo("almacen.txt", ios::app); //archivo para escribir en append (se crea o se abre en la carpeta del proyecto)
     
     if (!archivo.is_open()) {
         cout << "ERROR: No se pudo abrir el archivo";
