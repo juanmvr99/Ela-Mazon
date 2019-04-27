@@ -36,6 +36,16 @@ void cargarInfoArticulo() {
     getchar(); getchar();
 }
 
+void cargarInfoCliente() {
+    string nombre, direccion;
+    
+    cout << "Ingrese sus datos de cliente\n";
+    cout << "Nombre: ";
+    cin >> nombre;
+    cout << "\n Direccion: ";
+    cin >> direccion;
+}
+
 int main() {
     int op;
     
@@ -55,7 +65,7 @@ int main() {
             break;
 
             case 2: {
-                
+                cargarInfoCliente();
             }
             break;
 
