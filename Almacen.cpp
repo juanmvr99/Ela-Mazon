@@ -37,7 +37,6 @@ void Almacen::cargarStock() {
     }
     
     string line;
-    string nombre, desc, peso, tam, prov;
     int i = 0;
     string arr[5];
     
@@ -46,7 +45,7 @@ void Almacen::cargarStock() {
             continue; //saltarse las lineas separadoras
         
         size_t pos = line.find(": "); //se busca el : en la linea para copiar desde ahi los datos del item (2 caracteres despues del :)
-        if (pos != string::npos && !archivo.eof()) {
+        if (pos != string::npos) {
             pos += 2 ;
             line = line.substr(pos);
             arr[i] = line;
