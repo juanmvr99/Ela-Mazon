@@ -18,12 +18,11 @@ void Almacen::almacenarItem(Item item) {
     archivo << "-------------------------------------------------\n";
     archivo.close();    
     
-    stock.push_back(item);
     cout << "se almaceno el articulo " << item.getNombre() << endl;
 }
 
 void Almacen::retirarItem(Item item) {
-    
+    //cuando ya se haga la compra quitar el item correspondiente del stock y actualizar el archivo
     
 }
 
@@ -76,3 +75,23 @@ void Almacen::mostrarStock() {
     }
 }
 
+Item Almacen::buscarEnStock(string nombre) {
+    vector<Item>::iterator i;
+
+    for (i=stock.begin(); i!=stock.end(); ++i) {
+        if (i->getNombre() == nombre) {
+            Item x(i->getNombre(), i->getDescripcion(), i->getPeso(), i->getTamano(), i->getProveedor());
+            return x;
+        }    
+    }
+}
+
+bool Almacen::checkDisponible(string nombre) {
+    vector<Item>::iterator i;
+            
+    for (i=stock.begin(); i!=stock.end(); i++) {
+        if (i->getNombre() == nombre)
+            return true;
+    }
+    return false;
+}

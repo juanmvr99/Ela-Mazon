@@ -20,6 +20,8 @@ public:
     void retirarItem(Item item);
     void mostrarStock();
     void cargarStock();
+    bool checkDisponible(string nombre);
+    Item buscarEnStock(string nombreItem);
 };
 
 #endif /* ALMACEN_H */

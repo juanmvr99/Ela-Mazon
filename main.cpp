@@ -13,38 +13,30 @@ Almacen almacen("rutadelarchivoxd");
 void cargarInfoArticulo() {
     string proveedor, nombre, descripcion;
     int peso, tamano, cantidad;
-    
+    //getline es para que no explote si le metes espacios al string
     system("clear");
-    /*cout << "Ingrese el nombre del proveedor del articulo \n";
-    cin >> proveedor;
+    
+    cout << "Ingrese el nombre del proveedor del articulo \n";
+    getline(cin, proveedor);
     cout << "Ingrese el nombre del articulo \n";
-    cin >> nombre;
+    getline(cin, nombre);
     cout << "Ingrese la descripcion del articulo \n";
-    cin >> descripcion;
+    getline(cin, descripcion);
     cout << "Ingrese el peso del articulo \n";
     cin >> peso;
     cout << "Ingrese las dimensiones del articulo \n";
     cin >> tamano;
     cout << "Cuantos articulos de este tipo desea ingresar? \n";
-    cin >> cantidad;*/
+    cin >> cantidad;
 
-    //Item articulo(nombre, descripcion, peso, tamano, proveedor);
-    Item articulo("vibrador", "vibra xd", 14, 27, "tu mama");
+    Item articulo(nombre, descripcion, peso, tamano, proveedor);
+    /*Item articulo("vibrador", "vibra xd", 14, 27, "tu mama");
     Item articulo2("anal beads", "te las metes por el ano", 54, 78, "tu tia");
     almacen.almacenarItem(articulo);
-    almacen.almacenarItem(articulo2);
-    almacen.mostrarStock();
+    almacen.almacenarItem(articulo2);*/
+    //almacen.mostrarStock();
+    almacen.almacenarItem(articulo);
     getchar(); getchar();
-}
-
-void cargarInfoCliente() {
-    string nombre, direccion;
-    
-    cout << "Ingrese sus datos de cliente\n";
-    cout << "Nombre: ";
-    cin >> nombre;
-    cout << "\n Direccion: ";
-    cin >> direccion;
 }
 
 int main() {
@@ -57,7 +49,8 @@ int main() {
                 "2. Realizar una compra \n" <<
                 "0. Salir del programa \n";
         cin >> op;
-
+        cin.ignore(); //limpiar el buffer del input anterior
+        
         switch (op) {
 
             case 1: {  
@@ -66,32 +59,62 @@ int main() {
             break;
 
             case 2: {
+                system("clear");
                 string nombre, apellido, direccion, nombreItem;
                 int opC;
                 
-                cout << "Ingrese sus datos de cliente\n";
+               /* cout << "Ingrese sus datos de cliente\n";
                 cout << "Nombre: ";
                 cin >> nombre;
                 cout << "\nApellido: ";
                 cin >> apellido;
                 cout << "\nDireccion: ";
-                cin >> direccion;
+                getline(cin, direccion);
                 
-                Client cliente(nombre, apellido, direccion);
+                Client cliente(nombre, apellido, direccion);*/
+                Client cliente("nome", "ape", "micasa");
                 
-                cout << "1. Ver la lista de productos \n";
-                cout << "2. Ver su carrito \n";
-                cin >> opC;
-                
-                if (opC == 1) {
-                    almacen.mostrarStock();
-                    cout << "\n Ingrese el nombre exacto del producto para agregar al carrito \n";
-                    cin >> nombreItem;
-                    //buscar en stock el producto que tenga el nombre y crear el carrito en client pa meterlo xd
-                } else if (opC == 2) {
-                    //mostrar el carrito del cliente
-                }
-                system("clear");
+                do {
+                    system("clear");
+                    cout << "1. Ver la lista de productos \n";
+                    cout << "2. Ver su carrito \n";
+                    cout << "0. Regresar \n";
+                    cin >> opC;
+                    cin.ignore(); //limpiar el buffer del input anterior
+                    
+                    switch(opC) {
+                        case 1: {
+                            almacen.mostrarStock();
+                            cout << "\nIngrese el nombre exacto del producto para agregar al carrito \n";
+                            getline(cin, nombreItem);
+                            //buscar en stock el producto que tenga el nombre y meterlo en el carrito
+                            if (almacen.checkDisponible(nombreItem)) {
+                                cliente.addToCarrito(almacen.buscarEnStock(nombreItem));
+                                cout << "Item agregado al carrito con exito\n";
+                            } else {
+                                cout << "El item ingresado no esta disponible o no existe\n";
+                            }
+
+                            getchar();
+                        }
+                        break;
+                        
+                        case 2: {
+                            cliente.mostrarCarrito();
+                            getchar();
+                        }
+                        
+                        case 0: {
+                            
+                        }
+                        break;
+                        
+                        default: {
+                            cout << "Opcion invalida, por favor presione enter e ingrese una opcion valida \n";
+                            getchar();
+                        }
+                    }
+                } while (opC != 0);    
             }
             break;
 
@@ -101,7 +124,7 @@ int main() {
             
             default: {
                 cout << "Opcion invalida, por favor presione enter e ingrese una opcion valida \n";
-                getchar(); getchar();
+                getchar();
             }
         }
         

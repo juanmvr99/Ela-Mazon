@@ -1,13 +1,25 @@
 |---------------------------------------------ALMACEN---------------------------------------------|
-Nombre: vibrador
-Descripcion: vibra xd
-Peso: 1
-Tamano: 27
-Proveedor: tu mama
+Nombre: primero
+Descripcion: no
+Peso: 2
+Tamano: 3
+Proveedor: primer art
 -------------------------------------------------
-Nombre: anal beads
-Descripcion: te las metes por el ano
-Peso: 54
-Tamano: 78
-Proveedor: tu tia
+Nombre: segundo
+Descripcion: w
+Peso: 2
+Tamano: 3
+Proveedor: a
+-------------------------------------------------
+Nombre: tercer art
+Descripcion: w
+Peso: 2
+Tamano: 3
+Proveedor: prove
+-------------------------------------------------
+Nombre: cuarto
+Descripcion: a
+Peso: 2
+Tamano: 3
+Proveedor: prove
 -------------------------------------------------

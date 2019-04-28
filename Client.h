@@ -28,7 +28,7 @@ public:
     string getDireccion() {
         return direccion;
     }
-    void addToCarrito(string nombreItem);
+    void addToCarrito(Item item);
     void mostrarCarrito();
 };
 
