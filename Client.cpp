@@ -20,3 +20,22 @@ void Client::mostrarCarrito() {
         cout << "nombre: " << i->getNombre() <<"\n";
     }
 }
+
+void Client::deleteFromCarrito(string nombre) {
+    
+    if (carrito.empty()) {
+        cout << "Su carrito esta vacio\n";
+        return;
+    }
+    
+    vector<Item>::iterator i;
+    for (i=carrito.begin(); i!=carrito.end(); ++i) {
+        if(i->getNombre() == nombre) {
+            carrito.erase(i);
+            cout << "Item borrado con exito \n";
+            return;
+        }
+    }
+    
+    cout << "El nombre del item ingresado no existe en su carrito \n";
+}

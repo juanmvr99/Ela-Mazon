@@ -28,8 +28,12 @@ public:
     string getDireccion() {
         return direccion;
     }
+    vector<Item> getCarrito() {
+        return carrito;
+    }
     void addToCarrito(Item item);
     void mostrarCarrito();
+    void deleteFromCarrito(string nombre);
 };
 
 #endif /* CLIENT_H */

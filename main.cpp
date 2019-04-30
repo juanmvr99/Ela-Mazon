@@ -1,6 +1,5 @@
 #include <cstdlib>
 #include <iostream>
-#include <windows.h>
 
 #include "Item.h"
 #include "Almacen.h"
@@ -28,6 +27,7 @@ void cargarInfoArticulo() {
     cin >> tamano;
     cout << "Cuantos articulos de este tipo desea ingresar? \n";
     cin >> cantidad;
+    cin.ignore(); //limpiar buffer
 
     Item articulo(nombre, descripcion, peso, tamano, proveedor);
     /*Item articulo("vibrador", "vibra xd", 14, 27, "tu mama");
@@ -36,7 +36,7 @@ void cargarInfoArticulo() {
     almacen.almacenarItem(articulo2);*/
     //almacen.mostrarStock();
     almacen.almacenarItem(articulo);
-    getchar(); getchar();
+    getchar();
 }
 
 int main() {
@@ -61,23 +61,26 @@ int main() {
             case 2: {
                 system("clear");
                 string nombre, apellido, direccion, nombreItem;
-                int opC;
+                int opC, ans;
                 
                /* cout << "Ingrese sus datos de cliente\n";
                 cout << "Nombre: ";
                 cin >> nombre;
                 cout << "\nApellido: ";
                 cin >> apellido;
+                cin.ignore();
                 cout << "\nDireccion: ";
                 getline(cin, direccion);
                 
                 Client cliente(nombre, apellido, direccion);*/
-                Client cliente("nome", "ape", "micasa");
+                Client cliente("thanos", "anos", "verano");
                 
                 do {
                     system("clear");
                     cout << "1. Ver la lista de productos \n";
                     cout << "2. Ver su carrito \n";
+                    cout << "3. Retirar item del carrito \n";
+                    cout << "4. Ir a checkout \n";
                     cout << "0. Regresar \n";
                     cin >> opC;
                     cin.ignore(); //limpiar el buffer del input anterior
@@ -102,7 +105,38 @@ int main() {
                         case 2: {
                             cliente.mostrarCarrito();
                             getchar();
+                        } 
+                        break;
+                        
+                        case 3: {
+                            cliente.mostrarCarrito();
+                            if (!cliente.getCarrito().empty()) {
+                                cout << "Ingrese el nombre del item a eliminar \n";
+                                getline(cin, nombre);
+                                cliente.deleteFromCarrito(nombre);
+                            }
+                            
+                            getchar();
                         }
+                        break;
+                        
+                        case 4: {
+                            cliente.mostrarCarrito();
+                            if (!cliente.getCarrito().empty()) {
+                                cout << "Desea proceder a comprar estos items? \n";
+                                cout << "1. Si \n";
+                                cout << "2. No \n";
+                                cin >> ans;
+                                cin.ignore(); //limpiar buffer
+                                if (ans == 1) {
+                                    //eliminar del almacen y hacer procedimiento de compra
+                                } else if (ans != 2) 
+                                    cout << "Opcion invalida\n";
+                            }
+                            
+                            getchar();
+                        }
+                        break;
                         
                         case 0: {
                             
