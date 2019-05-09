@@ -1,5 +1,4 @@
 #include "Client.h"
-#include "Almacen.h"
 
 void Client::addToCarrito(Item item) {
    
@@ -38,4 +37,8 @@ void Client::deleteFromCarrito(string nombre) {
     }
     
     cout << "El nombre del item ingresado no existe en su carrito \n";
+}
+
+void Client::limpiarCarrito() {
+    carrito.clear();
 }

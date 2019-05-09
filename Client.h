@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "Item.h"
+#include "Almacen.h"
 using namespace std;
 
 class Client {
@@ -34,6 +35,7 @@ public:
     void addToCarrito(Item item);
     void mostrarCarrito();
     void deleteFromCarrito(string nombre);
+    void limpiarCarrito();
 };
 
 #endif /* CLIENT_H */

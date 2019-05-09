@@ -73,7 +73,7 @@ int main() {
                 getline(cin, direccion);
                 
                 Client cliente(nombre, apellido, direccion);*/
-                Client cliente("thanos", "anos", "verano");
+                Client cliente("thanos", "anos", "verano"); //mientras tanto
                 
                 do {
                     system("clear");
@@ -87,6 +87,7 @@ int main() {
                     
                     switch(opC) {
                         case 1: {
+                            almacen.cargarStock();
                             almacen.mostrarStock();
                             cout << "\nIngrese el nombre exacto del producto para agregar al carrito \n";
                             getline(cin, nombreItem);
@@ -129,17 +130,18 @@ int main() {
                                 cin >> ans;
                                 cin.ignore(); //limpiar buffer
                                 if (ans == 1) {
-                                    //eliminar del almacen y hacer procedimiento de compra
+                                    almacen.retirarItems(cliente.getCarrito());
+                                    cout << "\nSu compra se realizo con exito, a continuacion se mostrara el proceso de transito de su paquete\n";
+                                    almacen.manejarEnvio(cliente.getDireccion(), cliente.getCarrito());
+                                    cliente.limpiarCarrito(); 
                                 } else if (ans != 2) 
                                     cout << "Opcion invalida\n";
                             }
-                            
                             getchar();
                         }
                         break;
                         
                         case 0: {
-                            
                         }
                         break;
                         
@@ -167,4 +169,3 @@ int main() {
 
     return 0;
 }
-

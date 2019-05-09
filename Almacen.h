@@ -2,7 +2,9 @@
 #define ALMACEN_H
 
 #include "Item.h"
+#include "Paquete.h"
 #include <iostream>
+#include <fstream>
 #include <vector>
 using namespace std;
 
@@ -17,11 +19,13 @@ public:
     }
     
     void almacenarItem(Item item);
-    void retirarItem(Item item);
+    void retirarItems(vector<Item> carrito);
     void mostrarStock();
     void cargarStock();
     bool checkDisponible(string nombre);
     Item buscarEnStock(string nombreItem);
+    void actualizarAlmacen();
+    void manejarEnvio(string direccion, vector<Item> items);
 };
 
 #endif /* ALMACEN_H */

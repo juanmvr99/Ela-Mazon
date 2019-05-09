@@ -1,6 +1,4 @@
 #include "Almacen.h"
-#include <iostream>
-#include <fstream>
 
 void Almacen::almacenarItem(Item item) {
     //aqui el item se va a guardar en el archivo del almacen
@@ -21,19 +19,54 @@ void Almacen::almacenarItem(Item item) {
     cout << "se almaceno el articulo " << item.getNombre() << endl;
 }
 
-void Almacen::retirarItem(Item item) {
-    //cuando ya se haga la compra quitar el item correspondiente del stock y actualizar el archivo
+void Almacen::retirarItems(vector<Item> carrito) {
+    //cuando ya se haga la compra quitar los items correspondiente del stock y actualizar el archivo
+    vector<Item>::iterator i; //iterador para el carrito
+    vector<Item>::iterator j; //iterador para el stock
     
+    for (i=carrito.begin(); i!=carrito.end(); ++i) {
+        for (j=stock.begin(); j!=stock.end(); ++j) {
+            if (i->getNombre() == j->getNombre()) {
+                stock.erase(j);
+                break; //para que borre solo el primero que consiga
+            }
+        }
+    }
+    actualizarAlmacen();    
 }
 
-//carga el archivo almacen.txt a un vector de items
+void Almacen::actualizarAlmacen() {
+    //cuando se hace la compra y se hayan sacado los items del stock se actualiza el archivo con el nuevo stock
+    ofstream archivo("almacen.txt"); 
+    
+    if (!archivo.is_open()) {
+        cout << "ERROR: No se pudo abrir el archivo para actualizarlo";
+        exit(1);
+    }
+    archivo << "|---------------------------------------------ALMACEN---------------------------------------------|\n";
+    
+    vector<Item>::iterator i;
+    for (i=stock.begin(); i!=stock.end(); ++i) {
+        archivo << "Nombre: " << i->getNombre() << "\n";
+        archivo << "Descripcion: " << i->getDescripcion() << "\n";
+        archivo << "Peso: " << i->getPeso() << "\n";
+        archivo << "Tamano: " << i->getTamano() << "\n";
+        archivo << "Proveedor: " << i->getProveedor() << "\n";
+        archivo << "-------------------------------------------------\n";
+    }
+    archivo.close();
+}
+
 void Almacen::cargarStock() {
+    //carga el archivo almacen.txt a un vector de items (el stock)
     ifstream archivo("almacen.txt"); //abierto en modo lectura
     
     if (!archivo.is_open()) {
         cout << "ERROR: No se pudo abrir el archivo para cargar el stock";
         exit(1);
     }
+    
+    stock.clear(); //se limpia el stock en caso de que se haya hecho una compra anteriormente en la misma corrida del programa
     
     string line;
     int i = 0;
@@ -60,8 +93,6 @@ void Almacen::cargarStock() {
 }
 
 void Almacen::mostrarStock() {
-    
-    cargarStock();
     vector<Item>::iterator i;
     cout << "---Lista de productos---\n\n";
 
@@ -76,6 +107,7 @@ void Almacen::mostrarStock() {
 }
 
 Item Almacen::buscarEnStock(string nombre) {
+    //devuelve una copia del objeto item con el nombre solicitado
     vector<Item>::iterator i;
 
     for (i=stock.begin(); i!=stock.end(); ++i) {
@@ -94,4 +126,14 @@ bool Almacen::checkDisponible(string nombre) {
             return true;
     }
     return false;
+}
+
+void Almacen::manejarEnvio(string direccion, vector<Item> items) {
+    Paquete paquete; 
+    //empaquetado de los productos y asignacion del destino
+    paquete.empaquetar(items);
+    paquete.asignarDireccion(direccion);
+    //proceso de envio
+    paquete.enviar();
+    paquete.llegada();
 }
